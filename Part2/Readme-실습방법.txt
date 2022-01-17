@@ -41,8 +41,27 @@ k logs $(k get pods --show-labels -l 'app=nginx' --no-headers|awk {'print $1'})
 kill -9 $( ps -ef|grep port-forward|awk {'print $2'}|head -1 )
 
 
-## istio 트래픽 라우팅 ##
+-------------------------------------------------------------------
+##### istio 트래픽 라우팅 #####
 vi /etc/hosts
 
 #Add below for Istio Test
 127.0.0.1 samdasoo.aidan.dev
+
+
+k apply -f 20_istio-cr-nginx.yaml -n default
+
+k logs -f $(k get pod -o custom-columns=NAME:.metadata.name --no-headers)
+
+#curl -v 옵션(장황한)으로 자세한 응답 확인
+curl -XGET samdasoo.aidan.dev -v
+
+* Connected to samdasoo.aidan.dev (127.0.0.1) port 80 (#0)
+> GET / HTTP/1.1
+> Host: samdasoo.aidan.dev
+> User-Agent: curl/7.64.1
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< server: istio-envoy
+
