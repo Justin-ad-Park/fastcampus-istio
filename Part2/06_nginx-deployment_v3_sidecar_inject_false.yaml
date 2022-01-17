@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: justin-nginx
+  labels:
+    app: js-labels-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        ## istio sidecar injection을 사용하지 않는 경우
+        #sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+      - name: nginx-ctn
+        image: nginx:1.16.1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "300m"
+        ports:
+        - containerPort: 80

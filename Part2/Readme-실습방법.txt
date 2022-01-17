@@ -20,7 +20,7 @@ kubectl apply -f 04_nginx-deployment_v3_changeRSto1.yaml
 
 
 # 서비스 연결 쿠버네티스 서비스와 외부 포트를 연결
-kubectl apply -f 05_service.yaml
+kubectl apply -f 10_service.yaml
 
 kubectl port-forward services/my-nginx-service 8888:80 -n default
 # -n namespace
@@ -41,3 +41,8 @@ k logs $(k get pods --show-labels -l 'app=nginx' --no-headers|awk {'print $1'})
 kill -9 $( ps -ef|grep port-forward|awk {'print $2'}|head -1 )
 
 
+## istio 트래픽 라우팅 ##
+vi /etc/hosts
+
+#Add below for Istio Test
+127.0.0.1 samdasoo.aidan.dev
