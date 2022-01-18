@@ -1,4 +1,4 @@
-#01. 디플로이먼트 실행
+  #01. 디플로이먼트 실행
 kubectl apply -f 01_nginx-deployment.yaml
 
 #02. nginx 버전 업그레이드 
