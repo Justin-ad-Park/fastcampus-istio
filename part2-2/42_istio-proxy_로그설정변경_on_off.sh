@@ -16,3 +16,4 @@ k exec -it $(kname productpage) -c istio-proxy -- curl -XPOST localhost:15000/lo
 k exec -it $(kname productpage) -c istio-proxy -- curl -XPOST "localhost:15000/logging?http=debug"
 k exec -it $(kname productpage) -c istio-proxy -- curl -XPOST "localhost:15000/logging?http=error"
 k exec -it $(kname productpage) -c istio-proxy -- curl -XPOST "localhost:15000/logging?http=warning"
+k exec -it $(kname productpage) -c istio-proxy -- curl -XPOST "localhost:15000/logging?level=off"
