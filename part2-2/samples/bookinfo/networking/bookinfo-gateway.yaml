@@ -34,6 +34,10 @@ spec:
         exact: /logout
     - uri:
         prefix: /api/v1/products
+#    headers:
+#      request:
+#        set:
+#          test: "Justin Test"
     route:
     - destination:
         host: productpage
