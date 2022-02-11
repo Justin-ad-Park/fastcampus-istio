@@ -8,12 +8,25 @@ spec:
   http:
   - match:
     - headers:
-        cookie:
-          regex: "^(.*?;)?(userType=p)(;.*)?$"
+        end-user:
+          exact: delay
+    fault:
+      delay:
+        fixedDelay: 2s
+        percentage:
+          value: 100
+    route:
+    - destination:
+        host: reviews
+        subset: v3
+  - match:
+    - headers:
+        end-user:
+          exact: failure
     fault:
       abort:
         percentage:
-          value: 50.0
+          value: 75.0
         httpStatus: 500
     route:
     - destination:
@@ -36,4 +49,3 @@ spec:
     - destination:
         host: reviews
         subset: v1
-# 쿠 라우팅은 성공 못함

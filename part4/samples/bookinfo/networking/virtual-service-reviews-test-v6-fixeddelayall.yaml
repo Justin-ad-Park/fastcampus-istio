@@ -9,11 +9,11 @@ spec:
   - match:
     - headers:
         end-user:
-          exact: justin
+          exact: failure
     fault:
       abort:
         percentage:
-          value: 50.0
+          value: 75.0
         httpStatus: 500
     route:
     - destination:
@@ -36,3 +36,13 @@ spec:
     - destination:
         host: reviews
         subset: v1
+    fault:
+      abort:
+        percentage:
+          value: 50
+        httpStatus: 400
+      delay:
+        fixedDelay: 1s
+        percentage:
+          value: 50
+
