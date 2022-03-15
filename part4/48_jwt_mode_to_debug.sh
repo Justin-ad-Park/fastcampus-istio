@@ -1,0 +1,1 @@
+k exec -it $(kname httpbin foo) -n foo -c istio-proxy -- curl -XPOST "localhost:15000/logging?jwt=debug"
